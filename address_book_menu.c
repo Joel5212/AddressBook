@@ -18,6 +18,20 @@ int get_option(int type, const char *msg)
 	 * Read a charcter
 	 */
 
+	if (type == NUM)
+	{
+		short option;
+		printf(msg);
+		scanf("%u", option);
+		return option;
+	}
+	else if (type == CHAR)
+	{
+		char option;
+		printf(msg);
+		scanf("%c", &option);
+		return (int)option;
+	}
 	/* Fill the code to add above functionality */
 }
 
@@ -84,6 +98,18 @@ void main_menu(void)
 	printf("Please select an option: ");
 }
 
+void add_contacts_menu(void)
+{
+	menu_header("Add Contact:\n");
+
+	printf("0. Back\n");
+	printf("1. Name\n");
+	printf("2. Phone No 1\n");
+	printf("3. Email ID 1\n");
+	printf("\n");
+	printf("Please select an option: ");
+}
+
 Status menu(AddressBook *address_book)
 {
 	ContactInfo backup;
@@ -106,6 +132,8 @@ Status menu(AddressBook *address_book)
 		switch (option)
 		{
 		case e_add_contact:
+
+			add_contacts(address_book);
 			/* Add your implementation to call add_contacts function here */
 
 			break;
@@ -132,11 +160,32 @@ Status menu(AddressBook *address_book)
 	return e_success;
 }
 
-Status add_contacts(AddressBook *address_book){
+Status add_contacts(AddressBook *address_book)
+{
 	/* Add the functionality for adding contacts here */
+	do
+	{
+		add_contacts_menu();
 
-	int option
+		int option = get_option(NUM, "");
+		switch (expression)
+		{
+		case 0:
+			/* code */
+			break;
+		case 1:
 
+			break;
+
+		case 2:
+			break;
+
+		case 3:
+			break;
+		default:
+			break;
+		}
+	} while (1)
 }
 
 Status search(const char *str, AddressBook *address_book, int loop_count, int field, const char *msg, Modes mode)
