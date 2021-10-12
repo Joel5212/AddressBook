@@ -12,6 +12,10 @@
 Status load_file(AddressBook *address_book)
 {
 	int ret;
+	FILE * filePointer:
+	struct stat SMetaData;
+	ret = stat(DEFAULT_FILE, &SMetaData)
+
 
 	/* 
 	 * Check for file existance
@@ -23,10 +27,16 @@ Status load_file(AddressBook *address_book)
 		 * Do the neccessary step to open the file
 		 * Do error handling
 		 */ 
+		filePointer = fopen(DEFAULT_FILE, "r+")
+		if((filePointer == NULL)){
+			printf("Error while opening file"\n)
+			return e_fail
+		}
 	}
 	else
 	{
 		/* Create a file for adding entries */
+		filePointer = fopen(DEFAULT_FILE, "r+")
 	}
 
 	return e_success;
