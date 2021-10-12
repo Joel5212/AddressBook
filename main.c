@@ -1,3 +1,4 @@
+/*Main method that groups all of the subfiles together*/
 #include <stdio.h>
 #include <stdio_ext.h>
 #include <stdlib.h>

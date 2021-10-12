@@ -1,3 +1,5 @@
+/*File that handles all of the menu options*/
+
 #include <stdio.h>
 #include <stdio_ext.h>
 #include <stdlib.h>
@@ -16,7 +18,7 @@ int get_option(int type, const char *msg)
 	 * Just an enter key detection
 	 * Read an number
 	 * Read a charcter
-	 */
+	 */ 
 
 	/* Fill the code to add above functionality */
 }
@@ -51,7 +53,7 @@ Status list_contacts(AddressBook *address_book, const char *title, int *index, c
 	 * Add code to list all the contacts availabe in address_book.csv file
 	 * Should be menu based
 	 * The menu provide navigation option if the entries increase the page size
-	 */
+	 */ 
 
 	return e_success;
 }
@@ -96,7 +98,7 @@ Status menu(AddressBook *address_book)
 
 		option = get_option(NUM, "");
 
-		if ((address_book->count == 0) && (option != e_add_contact))
+		if ((address_book-> count == 0) && (option != e_add_contact))
 		{
 			get_option(NONE, "No entries found!!. Would you like to add? Use Add Contacts");
 
@@ -105,38 +107,35 @@ Status menu(AddressBook *address_book)
 
 		switch (option)
 		{
-		case e_add_contact:
-			/* Add your implementation to call add_contacts function here */
-
-			break;
-		case e_search_contact:
-			search_contact(address_book);
-			break;
-		case e_edit_contact:
-			edit_contact(address_book);
-			break;
-		case e_delete_contact:
-			delete_contact(address_book);
-			break;
-		case e_list_contacts:
-			break;
-			/* Add your implementation to call list_contacts function here */
-		case e_save:
-			save_file(address_book);
-			break;
-		case e_exit:
-			break;
+			case e_add_contact:
+				/* Add your implementation to call add_contacts function here */
+				break;
+			case e_search_contact:
+				search_contact(address_book);
+				break;
+			case e_edit_contact:
+				edit_contact(address_book);
+				break;
+			case e_delete_contact:
+				delete_contact(address_book);
+				break;
+			case e_list_contacts:
+				break;
+				/* Add your implementation to call list_contacts function here */
+			case e_save:
+				save_file(address_book);
+				break;
+			case e_exit:
+				break;
 		}
 	} while (option != e_exit);
 
 	return e_success;
 }
 
-Status add_contacts(AddressBook *address_book){
+Status add_contacts(AddressBook *address_book)
+{
 	/* Add the functionality for adding contacts here */
-
-	int option
-
 }
 
 Status search(const char *str, AddressBook *address_book, int loop_count, int field, const char *msg, Modes mode)

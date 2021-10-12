@@ -1,3 +1,5 @@
+/*Header file that contains typedefs of Modes, MenuOptions, Status, MenuFeatures, ContactInfo, and AddressBook*/
+
 #ifndef ADDRESS_BOOK_H
 #define ADDRESS_BOOK_H
 
@@ -19,6 +21,8 @@
 
 #define FIELD_DELIMITER				','
 #define NEXT_ENTRY					'\n'
+
+
 
 typedef int bool_t;
 
