@@ -27,8 +27,11 @@ Status load_file(AddressBook *address_book)
 		 * Do the neccessary step to open the file
 		 * Do error handling
 		 */ 
-		//EX: internal file pointer is used here:
+		
+		
+
 		address_book->fp = fopen(DEFAULT_FILE, "r+");
+		ContactInfo ContactTable[];
 		if(address_book->fp == NULL){
 			printf("Error: Could not open the file.\n");
 			return e_fail;
@@ -49,7 +52,11 @@ Status save_file(AddressBook *address_book)
 	 * Write contacts back to file.
 	 * Re write the complete file currently
 	 */ 
-	address_book->fp = fopen(DEFAULT_FILE, "w");
+	address_book->list->email_addresses;
+	address_book->list->name;
+	address_book->list->phone_numbers;
+	address_book->list->si_no;
+	//address_book->fp = fopen(DEFAULT_FILE, "w");
 
 	if (address_book->fp == NULL)
 	{
