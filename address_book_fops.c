@@ -11,6 +11,10 @@
 
 Status load_file(AddressBook *address_book)
 {
+	/*
+	uses the passed address of AddressBook so that you can access the internal FILE pointer fp
+	so you don't have to instantiate a new FILE pointer
+	*/
 	int ret;
 	ret = access(DEFAULT_FILE, F_OK);
 	/* 
@@ -23,9 +27,10 @@ Status load_file(AddressBook *address_book)
 		 * Do the neccessary step to open the file
 		 * Do error handling
 		 */ 
+		//EX: internal file pointer is used here:
 		address_book->fp = fopen(DEFAULT_FILE, "r+");
 		if(address_book->fp == NULL){
-			printf("Error while opening file\n");
+			printf("Error: Could not open the file.\n");
 			return e_fail;
 		}
 	}
@@ -48,6 +53,7 @@ Status save_file(AddressBook *address_book)
 
 	if (address_book->fp == NULL)
 	{
+		printf("Error: Could not find a file to write to.\n")
 		return e_fail;
 	}
 
