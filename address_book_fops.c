@@ -24,8 +24,8 @@ Status load_file(AddressBook *address_book)
 		 * Do error handling
 		 */ 
 		address_book->fp = fopen(DEFAULT_FILE, "r+");
-		if((address_book->fp == NULL)){
-			printf("Error while opening file\n")
+		if(address_book->fp == NULL){
+			printf("Error while opening file\n");
 			return e_fail;
 		}
 	}
