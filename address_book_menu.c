@@ -172,15 +172,28 @@ Status add_contacts(AddressBook *address_book)
 		{
 		case 0:
 			/* code */
+
+			menu(address_book);
+
 			break;
 		case 1:
+			load_file(address_book)
+				printf("Enter the name:   ");
+			scanf("%s", address_book.list->name[NAME_COUNT][NAME_LEN]);
+			save_file(address_book);
 
 			break;
 
 		case 2:
+			load_file(address_book);
+			printf("Enter Phone Number");
+			scanf("%s", address_book.list->phone_numbers[PHONE_NUMBER_COUNT][NUMBER_LEN]);
+			save_file(address_book);
 			break;
 
 		case 3:
+			printf("Enter Email address");
+			scanf("%s", address_book.list->email_addresses[EMAIL_ID_COUNT][EMAIL_ID_LEN]);
 			break;
 		default:
 			break;
