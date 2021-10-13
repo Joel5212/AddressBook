@@ -156,7 +156,6 @@ Status menu(AddressBook *address_book)
 			break;
 		case e_exit:
 			break;
->>>>>>> master
 		}
 	} while (option != e_exit);
 
@@ -166,7 +165,6 @@ Status menu(AddressBook *address_book)
 Status add_contacts(AddressBook *address_book)
 {
 	/* Add the functionality for adding contacts here */
-=======
 	do
 	{
 		add_contacts_menu();
@@ -190,7 +188,6 @@ Status add_contacts(AddressBook *address_book)
 			break;
 		}
 	} while (1)
->>>>>>> master
 }
 
 Status search(const char *str, AddressBook *address_book, int loop_count, int field, const char *msg, Modes mode)
