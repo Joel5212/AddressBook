@@ -118,19 +118,6 @@ void delete_contact(){
 	}
 	fclose(fp);
 	fclose(fp1);
-	while(1){
-		fread(&ab, sizeof(ab),1,fp);
-		//reaches the end of the file, break
-		if(feof(fp){
-			break;
-		}
-		if(strcmp(ab.name, name) == 0){
-			found = 1;
-		}
-		else{
-			fwrite(&ab, sizeof(ab), 1, fp1);
-		}
-	}
 	if(found == 0)
 	{
 		printf("Could not find the contact.\n");
