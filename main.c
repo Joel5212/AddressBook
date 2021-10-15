@@ -13,3 +13,29 @@ If it returns the Status e_success:
 int main(void)
 {
 }
+
+void delete_contact(){
+	FILE *fp, *fp1;
+	struct AddressBook ab, ab2;
+	int id, choice, found = 0, count = 0;
+	char[] name;
+	printf("Make a menu");
+	scanf("%d",&choice);
+	while(1){
+		fread(&ab, sizeof(ab),1,fp);
+		//reaches the end of the file, break
+		if(feof(fp){
+			break;
+		}
+		if(strcmp(ab.name, name) ==0){
+			found = 1;
+		}
+		else{
+			fwrite(&ab,sizeof(ab), 1, fp1);
+			
+		}
+	}
+	
+
+
+}
