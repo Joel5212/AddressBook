@@ -22,6 +22,11 @@
 #define FIELD_DELIMITER ','
 #define NEXT_ENTRY '\n'
 
+void add_contact();
+void search_contact();
+void edit_contact();
+void delete_contact();
+void save();
 typedef int bool_t;
 
 typedef enum
@@ -66,17 +71,10 @@ typedef enum
 
 typedef struct
 {
-	char name[NAME_COUNT][NAME_LEN];
-	char phone_numbers[PHONE_NUMBER_COUNT][NUMBER_LEN];
-	char email_addresses[EMAIL_ID_COUNT][EMAIL_ID_LEN];
-	int si_no;
-} ContactInfo;
-
-typedef struct
-{
 	char name;
-	char phoneNumbers;
-	char emailAddresses
+	int phoneNumbers;
+	char emailAddresses;
+	int serialNumber;
 } AddressBook;
 
 #endif
