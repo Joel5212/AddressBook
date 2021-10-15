@@ -72,11 +72,11 @@ typedef struct
 	int si_no;
 } ContactInfo;
 
-typedef struct
-{
-	char name[32];
-	char phoneNumbers[32];
-	char emailAddresses[32];
-} ContactInfo;
+// typedef struct
+// {
+// 	char name[32];
+// 	char phoneNumbers[32];
+// 	char emailAddresses[32];
+// } ContactInfo;
 
 #endif
