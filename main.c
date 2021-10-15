@@ -12,10 +12,10 @@ If it returns the Status e_success:
 #include "address_book.h"
 typedef struct
 {
-	char name[32];
-	int phoneNumbers;
+	char names[32];
+	char phoneNumbers[32];
 	char emailAddresses[32];
-	int serialNumber;
+	char serialNumbers[32];
 } AddressBook;
 
 int main(void)
@@ -25,9 +25,10 @@ int main(void)
 void delete_contact(){
 	FILE *fp, *fp1;
 	struct AddressBook ab, ab2;
-	int id, choice, found = 0, count = 0;
+	int id, choice, found = 0;
+	//int count = 0;
 	fp = fopen(DEFAULT_FILE, "rb");
-	fp1 = fopen(DEFAULT_FILE, "wb");
+	fp1 = fopen("temp.txt", "wb");
 	
 
 	printf("####### Search Contact to Delete by:\n\n");
@@ -37,23 +38,23 @@ void delete_contact(){
 	printf("3. Email ID\n");
 	printf("4. Serial No\n\n");
 
-	choice: ;
+	chooseOption: ;
 	printf("Please select an option: ");
 	scanf("%d",&choice);
 	if(choice == 0){
 		//goes back a menu in the program
 	}
 	else if(choice == 1){
-		char name[32];
+		char myName[32];
 		printf("Enter the name: ");
-		scanf("%s", &name);
+		scanf("%s", &myName);
 		while(1){
 			fread(&ab, sizeof(ab), 1, fp);
 			//reaches the end of the file, break
 			if(feof(fp){
 				break;
 			}
-			if(strcmp(ab.name, &name) == 0){
+			if(strcmp(ab.name, myName) == 0){
 				found = 1;
 			}
 			else{
@@ -62,33 +63,32 @@ void delete_contact(){
 		}	
 	}
 	else if(choice == 2){
-		int phoneNumber;
+		char myNumber[32];
 		printf("Enter a phone number: ");
-		scanf("%d", &phoneNumber);
+		scanf("%s", &myNumber);
 		while(1){
-			fread(&ab, sizeof(ab),1,fp);
+			fread(&ab, sizeof(ab), 1, fp);
 			if(feof(fp){
 				break;
 			}
-			if(ab.phoneNumbers == phoneNumber){
+			if(strcmp(ab.phoneNumbers, myNumber) == 0){
 				found = 1;
 			}
 			else{
-				fwrite(&ab,sizeof(ab), 1, fp1);
+				fwrite(&ab, sizeof(ab), 1, fp1);
 			}
 		}
 	}
 	else if(choice == 3){
-		char email[32] ;
+		char myEmail[32] ;
 		printf("Enter the email: ");
-		scanf("%s", &email);
+		scanf("%s", &myEmail);
 		while(1){
 			fread(&ab, sizeof(ab), 1, fp);
-		
 			if(feof(fp){
 				break;
 			}
-			if(strcmp(ab.name, &email) == 0){
+			if(strcmp(ab.names, myEmail) == 0){
 				found = 1;
 			}
 			else{
@@ -97,15 +97,15 @@ void delete_contact(){
 		}
 	}
 	else if(choice == 4){
-		int serialNumber;
+		char mySi[32];
 		printf("Enter a serial number: ");
-		scanf("%d", &serialNumber);
+		scanf("%s", &mySi);
 		while(1){
-			fread(&ab, sizeof(ab),1,fp);
+			fread(&ab, sizeof(ab), 1, fp);
 			if(feof(fp){
 				break;
 			}
-			if(ab.serialNumbers == serialNumber){
+			if(strcmp(ab.serialNumbers, mySi) == 0){
 				found = 1;
 			}
 			else{
@@ -114,7 +114,7 @@ void delete_contact(){
 		}
 	}
 	else{
-		goto choice;
+		goto chooseOption;
 	}
 	fclose(fp);
 	fclose(fp1);
@@ -123,7 +123,7 @@ void delete_contact(){
 		printf("Could not find the contact.\n");
 	}
 	else{
-		fp = fopen(fname, "wb");
+		fp = fopen(DEFAULT_FILE, "wb");
 		fp1 = fopen("temp.text", "rb");
 	}
 	while(1){
