@@ -12,23 +12,4 @@ If it returns the Status e_success:
 #include "address_book.h"
 int main(void)
 {
-	AddressBook address_book;
-	Status ret;
-
-	/* Load the file from .csv file if any */
-	ret = load_file(&address_book);
-
-	if (ret == e_success)
-	{
-		/* Show all the available menu */
-		ret = menu(&address_book);
-
-		if (ret == e_success)
-		{
-			/* Save the entries */
-			save_prompt(&address_book);
-		}
-	}
-
-	return 0;
 }
