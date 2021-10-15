@@ -38,7 +38,7 @@ void delete_contact(){
 	printf("3. Email ID\n");
 	printf("4. Serial No\n\n");
 
-	chooseOption: ;
+	deleteOption: ;
 	printf("Please select an option: ");
 	scanf("%d",&choice);
 	if(choice == 0){
@@ -54,10 +54,12 @@ void delete_contact(){
 			if(feof(fp){
 				break;
 			}
+			//if the string matches, set found = 1, don't write to file
 			if(strcmp(ab.name, myName) == 0){
 				found = 1;
 			}
 			else{
+				//else, copy main file's data into a temp file
 				fwrite(&ab, sizeof(ab), 1, fp1);
 			}	
 		}	
@@ -114,19 +116,20 @@ void delete_contact(){
 		}
 	}
 	else{
-		goto chooseOption;
+		goto deleteOption;
 	}
 	fclose(fp);
 	fclose(fp1);
+	
 	if(found == 0)
 	{
 		printf("Could not find the contact.\n");
 	}
 	else{
+		//read from temp file and write to main file.
 		fp = fopen(DEFAULT_FILE, "wb");
 		fp1 = fopen("temp.text", "rb");
-	}
-	while(1){
+		while(1){
 		fread(&ab, sizeof(ab), 1, fp1);
 		if(feof(fp1)){
 			break;
@@ -136,6 +139,8 @@ void delete_contact(){
 	fclose(fp);
 	fclose(fp1);
 
+	}
+	
 
 
 }
