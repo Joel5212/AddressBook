@@ -1,6 +1,6 @@
 /*Header file for the file that handles all menu options*/
-#ifndef ABK_MENUS_H
-#define ABK_MENUS_H
+#ifndef ADDRESS_BOOK_MENU_H
+#define ADDRESS_BOOK_MENU_H
 
 #include "address_book.h"
 
