@@ -74,9 +74,9 @@ typedef struct
 
 typedef struct
 {
-	char name;
-	char phoneNumbers;
-	char emailAddresses
-} AddressBook;
+	char name[32];
+	char phoneNumbers[32];
+	char emailAddresses[32];
+} ContactInfo;
 
 #endif
