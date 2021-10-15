@@ -6,14 +6,10 @@ If it returns the Status e_success:
 		prompting the method save_file() from address_book_foops.c*/
 
 #include <stdio.h>
-#include <stdio_ext.h>
 #include <stdlib.h>
 #include <string.h>
 
 #include "address_book.h"
-#include "address_book_fops.h"
-#include "address_book_menu.h"
-
 int main(void)
 {
 	AddressBook address_book;

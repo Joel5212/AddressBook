@@ -22,8 +22,6 @@
 #define FIELD_DELIMITER ','
 #define NEXT_ENTRY '\n'
 
-
-
 typedef int bool_t;
 
 typedef enum
@@ -76,9 +74,9 @@ typedef struct
 
 typedef struct
 {
-	FILE *fp;
-	ContactInfo *list;
-	int count;
+	char name;
+	char phoneNumbers;
+	char emailAddresses
 } AddressBook;
 
 #endif
