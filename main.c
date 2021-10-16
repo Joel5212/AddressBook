@@ -34,6 +34,7 @@ int main()
 
 void menu()
 {
+
 	int option;
 
 	do
@@ -44,28 +45,29 @@ void menu()
 
 		switch (option)
 		{
+		case e_exit:
+			printf("%d", option);
+			break;
 		case e_add_contact:
-
+			printf("%d", option);
 			add_contacts();
 			/* Add your implementation to call add_contacts function here */
 
 			break;
 		case e_search_contact:
-			search_contact();
+			// search_contact();
 			break;
 		case e_edit_contact:
-			edit_contact();
+			// edit_contact();
 			break;
 		case e_delete_contact:
-			delete_contact();
+			// delete_contact();
 			break;
 		case e_list_contacts:
 			break;
 			/* Add your implementation to call list_contacts function here */
 		case e_save:
-			save_file();
-			break;
-		case e_exit:
+			// save_file();
 			break;
 		}
 	} while (option != e_exit);
@@ -77,17 +79,20 @@ void add_contacts()
 {
 	FILE *fp;
 	struct ContactInfo contactInfo;
-
+	fp = fopen(DEFAULT_FILE, "w");
 	do
 	{
 		add_contacts_menu();
 
-		int option = get_option(NUM, "");
-		switch (option)
+		int option2 = get_option(NUM, "");
+		switch (option2)
 		{
 		case 0:
 			/* code */
+			printf("Hello");
 			fwrite(&contactInfo, sizeof(contactInfo), 1, fp);
+			fclose(fp);
+
 			menu();
 
 			break;
@@ -127,7 +132,7 @@ void menu_header(const char *str)
 {
 	fflush(stdout);
 
-	system("clear");
+	// system("clear");
 
 	printf("#######  Address Book  #######\n");
 	if (str != '\0')
@@ -164,14 +169,14 @@ int get_option(int type, const char *msg)
 	{
 		short option;
 		printf(msg);
-		scanf("%u", option);
+		scanf("%d", &option);
 		return option;
 	}
 	else if (type == CHAR)
 	{
 		char option;
 		printf(msg);
-		scanf("%c", &option);
+		scanf("%c", option);
 		return (int)option;
 	}
 	/* Fill the code to add above functionality */
