@@ -479,7 +479,7 @@ void name()
 	}
 	else
 	{
-		fp = fopen(fname, "wb");
+		fp = fopen(DEFAULT_FILE, "wb");
 		fp1 = fopen("temp.dat", "rb");
 
 		while (1)
@@ -502,10 +502,10 @@ void name()
 void phoneNumbers()
 {
 	FILE *fp, *fp1;
-	struct emp t, t1;
+	struct ContactInfo t, t1;
 	int phoneNumbers, found = 0, count = 0;
 
-	fp = fopen(fname, "rb");
+	fp = fopen(DEFAULT_FILE, "rb");
 	fp1 = fopen("temp.dat", "wb");
 
 	printf("\nEnter the Employee Phone number you want to edit:");
@@ -546,7 +546,7 @@ void phoneNumbers()
 	}
 	else
 	{
-		fp = fopen(fname, "wb");
+		fp = fopen(DEFAULT_FILE, "wb");
 		fp1 = fopen("temp.dat", "rb");
 
 		while (1)
@@ -568,10 +568,10 @@ void phoneNumbers()
 void email()
 {
 	FILE *fp, *fp1;
-	struct emp t, t1;
+	struct ContactInfo t, t1;
 	int email, found = 0, count = 0;
 
-	fp = fopen(fname, "rb");
+	fp = fopen(DEFAULT_FILE, "rb");
 	fp1 = fopen("temp.dat", "wb");
 
 	printf("\nEnter the Employee email you want to edit:");
@@ -612,7 +612,7 @@ void email()
 	}
 	else
 	{
-		fp = fopen(fname, "wb");
+		fp = fopen(DEFAULT_FILE, "wb");
 		fp1 = fopen("temp.dat", "rb");
 
 		while (1)
@@ -684,11 +684,11 @@ void list_all_contacts()
 void delete_contact()
 {
 	FILE *fp, *fp1;
-	struct AddressBook ab, ab2;
+	struct ContactInfo ab, ab2;
 	int id, choice, found = 0;
 	//int count = 0;
 	fp = fopen(DEFAULT_FILE, "rb");
-	fp1 = fopen("temp.txt", "wb");
+	fp1 = fopen("temp.dat", "wb");
 
 	printf("####### Search Contact to Delete by:\n\n");
 	printf("0. Back\n");
@@ -703,6 +703,7 @@ deleteOption:;
 	if (choice == 0)
 	{
 		//goes back a menu in the program
+		main();
 	}
 	else if (choice == 1)
 	{
@@ -713,7 +714,7 @@ deleteOption:;
 		{
 			fread(&ab, sizeof(ab), 1, fp);
 			//reaches the end of the file, break
-			if(feof(fp){
+			if(feof(fp)){
 				break;
 			}
 			//if the string matches, set found = 1, don't write to file
@@ -734,7 +735,7 @@ deleteOption:;
 		while (1)
 		{
 			fread(&ab, sizeof(ab), 1, fp);
-			if(feof(fp){
+			if(feof(fp)){
 				break;
 			}
 			if(strcmp(ab.phoneNumbers, myNumber) == 0){
@@ -753,7 +754,7 @@ deleteOption:;
 		while (1)
 		{
 			fread(&ab, sizeof(ab), 1, fp);
-			if(feof(fp){
+			if(feof(fp)){
 				break;
 			}
 			if(strcmp(ab.names, myEmail) == 0){
@@ -772,7 +773,7 @@ deleteOption:;
 		while (1)
 		{
 			fread(&ab, sizeof(ab), 1, fp);
-			if(feof(fp){
+			if(feof(fp)){
 				break;
 			}
 			if(strcmp(ab.serialNumbers, mySi) == 0){
@@ -798,7 +799,7 @@ deleteOption:;
 	{
 		//read from temp file and write to main file.
 		fp = fopen(DEFAULT_FILE, "wb");
-		fp1 = fopen("temp.text", "rb");
+		fp1 = fopen("temp.dat", "rb");
 		while (1)
 		{
 			fread(&ab, sizeof(ab), 1, fp1);
