@@ -377,47 +377,55 @@ void searchContact()
 
 //EDIT CONTACT FUNCTIONS
 /* Printing a menu for when the edit option is prompted*/
-printf("==================Address Book=============");
-printf("======== Search Contact to edit by==========\n\n")
 
-	printf("1. Name\n\n");
-printf("2. PhoneNumber\n\n");
-printf("3. Email\n\n");
-printf("0. Exit\n\n");
-
-printf("========================================================\n\n");
-
-printf("\nPlease enter your Choice:");
-scanf("%d", &editc);
-
-/* Switch case for the 3 cases he wants*/
-switch (editc)
+void edit_contact()
 {
-case 1:
-	name();
-	break;
+	int option;
+	do
+	{
+		/* code */
 
-case 2:
-	phoneNumbers();
-	break;
+		printf("==================Address Book=============");
+		printf("======== Search Contact to edit by==========\n\n");
 
-case 3:
-	email();
-	break;
+		printf("1. Name\n\n");
+		printf("2. PhoneNumber\n\n");
+		printf("3. Email\n\n");
+		printf("0. Exit\n\n");
 
-case 0:
-	exit(0);
+		printf("========================================================\n\n");
+
+		printf("\nPlease enter your Choice:");
+		option = get_option(NUM, "");
+
+		/* Switch case for the 3 cases he wants*/
+		switch (option)
+		{
+		case 1:
+			name();
+			break;
+
+		case 2:
+			phoneNumbers();
+			break;
+
+		case 3:
+			email();
+			break;
+
+		case 0:
+			exit(0);
+		}
+	} while (option != 0);
 }
-
 /* Edit by name case */
 void name()
-
 {
 	FILE *fp, *fp1;
-	struct emp t, t1;
+	struct ContactInfo contactInfo;
 	int name, found = 0, count = 0;
 
-	fp = fopen(fname, "rb");
+	fp = fopen(DEFAULT_FILE, "rb");
 	fp1 = fopen("temp.dat", "wb");
 
 	/* Prompt user to enter employee name as thats what has been chosen for editing*/
@@ -429,28 +437,28 @@ void name()
 	/* while loop till either name is found and changed or not found*/
 	while (1)
 	{
-		fread(&t, sizeof(t), 1, fp);
+		fread(&contactInfo, sizeof(), 1, fp);
 
 		if (feof(fp))
 		{
 			break;
 		}
-		if (t.name == name)
+		if (contactInfo.name == name)
 		{
 			found = 1;
 			printf("\nEnter Employee Email:");
-			scanf("%d", &t.email);
+			scanf("%d", &contactInfo.emailAddresses);
 
 			fflush(stdin);
 			printf("\nEnter Employee Name:");
-			scanf("%s", t.name);
+			scanf("%s", contactInfo.name);
 			printf("\nEnter Employee Phone number:");
-			scanf("%d", &t.phoneNumbers);
-			fwrite(&t, sizeof(t), 1, fp1);
+			scanf("%d", &contactInfo.phoneNumbers);
+			fwrite(&contactInfo, sizeof(contactInfo), 1, fp1);
 		}
 		else
 		{
-			fwrite(&t, sizeof(t), 1, fp1);
+			fwrite(&contactInfo, sizeof(contactInfo), 1, fp1);
 		}
 	}
 	fclose(fp);
