@@ -24,7 +24,9 @@ struct ContactInfo
 };
 
 //Function Prototypes In Order
-void menu_header(const char *str) void main_menu(void) int get_option(int type, const char *msg);
+void menu_header(const char *str);
+void main_menu(void);
+int get_option(int type, const char *msg);
 void menu();
 
 void add_contacts_menu(void);
@@ -152,7 +154,7 @@ void add_contacts()
 {
 	FILE *fp;
 	struct ContactInfo contactInfo;
-
+	fp = fopen(DEFAULT_FILE, "ab");
 	do
 	{
 		add_contacts_menu();
@@ -163,6 +165,7 @@ void add_contacts()
 		case 0:
 			/* code */
 			fwrite(&contactInfo, sizeof(contactInfo), 1, fp);
+			fclose(fp);
 			menu();
 
 			break;
