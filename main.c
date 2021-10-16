@@ -17,6 +17,7 @@ struct ContactInfo
 	char name[32];
 	char phoneNumbers[32];
 	char emailAddresses[32];
+	char serialNumbers[32];
 };
 
 //Function Prototypes In Order
@@ -28,8 +29,9 @@ void menu();
 void add_contacts_menu(void);
 void add_contacts();
 
-
-
+void name();
+void phoneNumbers();
+void email();
 
 //Main function
 int main()
@@ -38,7 +40,7 @@ int main()
 }
 
 
-//Beginning
+//BEGINNING
 void menu_header(const char *str)
 {
 	fflush(stdout);
@@ -107,7 +109,6 @@ void menu()
 		{
 		case e_add_contact:
 			add_contacts();
-			/* Add your implementation to call add_contacts function here */
 			break;
 		case e_search_contact:
 			search_contact();
@@ -119,9 +120,8 @@ void menu()
 			delete_contact();
 			break;
 		case e_list_contacts:
-			list_contacts();
+			list_all_contacts();
 			break;
-			/* Add your implementation to call list_contacts function here */
 		case e_save:
 			save_file();
 			break;
@@ -429,6 +429,52 @@ fclose(fp1);
 //DELETE CONTACT FUNCTIONS
 
 //LIST CONTACTS FUNCTIONS
+void list_all_contacts() 
+{
+	char option;
+	char back = 'q';
+
+	FILE *fp;
+	struct ContactInfo display;
+
+
+	fp = fopen(DEFAULT_FILE, "rb");
+
+	//Address Book Header
+	printf("\n######\tAddress Book\t######\n");
+	printf("######\tSearch Result:\n");
+	
+	//Top of Display Table
+	printf("==========/==========/==========/==========/==========/==========/==========/==========/==========/==========/\n");
+	printf(":  S.No  : Name\t\t\t\t: Phone No\t\t\t\t: Email ID\t\t\t\t:\n");
+	printf("==========/==========/==========/==========/==========/==========/==========/==========/==========/==========/\n");
+	
+	//Body of Display Table
+	while (feof(fp) != NULL) {
+		fread(&display, sizeof(display), 1, fp);
+
+		printf(":  %s  : ", display.serialNumbers);
+		printf("%s\t\t\t: ", display.name);
+		printf("%s\t\t\t: ", display.phoneNumbers);
+		printf("%s\t\t: ", display.emailAddresses);
+		printf("\n")
+		printf("==========/==========/==========/==========/==========/==========/==========/==========/==========/==========/\n");
+	}
+	//Bottom line of Display Table
+	printf("==========/==========/==========/==========/==========/==========/==========/==========/==========/==========/\n");
+
+	fclose(pf);
+
+	//Options to go back to main menu selection screen
+	printf("Press: [q] | Cancel: [any other key] ");
+	scanf("%c\n", &option);
+
+	if (strcmp(option,'q') == -113){
+		menu();
+	}
+
+}
+
 
 //SAVE FUNCTION
 
