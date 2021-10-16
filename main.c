@@ -417,7 +417,7 @@ void name()
 	struct emp t, t1;
 	int name, found = 0, count = 0;
 
-	fp = fopen(fname, "rb");
+	fp = fopen(DEFAULT_FILE, "rb");
 	fp1 = fopen("temp.dat", "wb");
 
 	/* Prompt user to enter employee name as thats what has been chosen for editing*/
@@ -471,7 +471,7 @@ void name()
 	}
 	else
 	{
-		fp = fopen(fname, "wb");
+		fp = fopen(DEFAULT_FILE, "wb");
 		fp1 = fopen("temp.dat", "rb");
 
 		while (1)
@@ -497,7 +497,7 @@ void phoneNumbers()
 	struct emp t, t1;
 	int phoneNumbers, found = 0, count = 0;
 
-	fp = fopen(fname, "rb");
+	fp = fopen(DEFAULT_FILE, "rb");
 	fp1 = fopen("temp.dat", "wb");
 
 	printf("\nEnter the Employee Phone number you want to edit:");
@@ -538,7 +538,7 @@ void phoneNumbers()
 	}
 	else
 	{
-		fp = fopen(fname, "wb");
+		fp = fopen(DEFAULT_FILE, "wb");
 		fp1 = fopen("temp.dat", "rb");
 
 		while (1)
@@ -563,7 +563,7 @@ void email()
 	struct emp t, t1;
 	int email, found = 0, count = 0;
 
-	fp = fopen(fname, "rb");
+	fp = fopen(DEFAULT_FILE, "rb");
 	fp1 = fopen("temp.dat", "wb");
 
 	printf("\nEnter the Employee email you want to edit:");
@@ -604,7 +604,7 @@ void email()
 	}
 	else
 	{
-		fp = fopen(fname, "wb");
+		fp = fopen(DEFAULT_FILE, "wb");
 		fp1 = fopen("temp.dat", "rb");
 
 		while (1)
@@ -680,7 +680,7 @@ void delete_contact()
 	int id, choice, found = 0;
 	//int count = 0;
 	fp = fopen(DEFAULT_FILE, "rb");
-	fp1 = fopen("temp.txt", "wb");
+	fp1 = fopen("temp.dat", "wb");
 
 	printf("####### Search Contact to Delete by:\n\n");
 	printf("0. Main Menu\n");
@@ -791,7 +791,7 @@ deleteOption:;
 	{
 		//read from temp file and write to main file.
 		fp = fopen(DEFAULT_FILE, "wb");
-		fp1 = fopen("temp.text", "rb");
+		fp1 = fopen("temp.dat", "rb");
 		while (1)
 		{
 			fread(&ab, sizeof(ab), 1, fp1);
