@@ -84,6 +84,7 @@ typedef struct
 // 	char emailAddresses[32];
 // } ContactInfo;
 
+typedef struct {
 	char name;
 	int phoneNumbers;
 	char emailAddresses;

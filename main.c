@@ -1,5 +1,3 @@
-
-
 /*Main method that groups all of the subfiles together
 -Calls load_file() from address_book_fops.c
 If it returns the Status e_success:
@@ -797,7 +795,3 @@ void delete_contact(){
 
 	}
 }
-
-//SAVE FUNCTION
-
-
