@@ -71,7 +71,6 @@ typedef enum
 
 typedef struct
 {
-<<<<<<< HEAD
 	char name[NAME_COUNT][NAME_LEN];
 	char phone_numbers[PHONE_NUMBER_COUNT][NUMBER_LEN];
 	char email_addresses[EMAIL_ID_COUNT][EMAIL_ID_LEN];
@@ -84,12 +83,11 @@ typedef struct
 // 	char phoneNumbers[32];
 // 	char emailAddresses[32];
 // } ContactInfo;
-=======
+
 	char name;
 	int phoneNumbers;
 	char emailAddresses;
 	int serialNumber;
 } AddressBook;
->>>>>>> new_jk_branch
 
 #endif
