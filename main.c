@@ -433,6 +433,7 @@ void list_all_contacts()
 {
 	char option;
 	char back = 'q';
+	int result;
 
 	FILE *fp;
 	struct ContactInfo display;
@@ -469,7 +470,9 @@ void list_all_contacts()
 	printf("Press: [q] | Cancel: [any other key] ");
 	scanf("%c\n", &option);
 
-	if (strcmp(option,'q') == -113){
+	result = strcmp(&option, &back);
+
+	if (result == -113){
 		menu();
 	}
 
