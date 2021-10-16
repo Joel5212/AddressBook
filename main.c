@@ -502,7 +502,7 @@ void name()
 void phoneNumbers()
 {
 	FILE *fp, *fp1;
-	struct emp t, t1;
+	struct ContactInfo t, t1;
 	int phoneNumbers, found = 0, count = 0;
 
 	fp = fopen(DEFAULT_FILE, "rb");
@@ -568,7 +568,7 @@ void phoneNumbers()
 void email()
 {
 	FILE *fp, *fp1;
-	struct emp t, t1;
+	struct ContactInfo t, t1;
 	int email, found = 0, count = 0;
 
 	fp = fopen(DEFAULT_FILE, "rb");
