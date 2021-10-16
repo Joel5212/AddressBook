@@ -703,6 +703,7 @@ deleteOption:;
 	if (choice == 0)
 	{
 		//goes back a menu in the program
+		main();
 	}
 	else if (choice == 1)
 	{
