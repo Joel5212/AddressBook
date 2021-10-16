@@ -683,7 +683,7 @@ void delete_contact()
 	fp1 = fopen("temp.txt", "wb");
 
 	printf("####### Search Contact to Delete by:\n\n");
-	printf("0. Back\n");
+	printf("0. Main Menu\n");
 	printf("1. Name\n");
 	printf("2. Phone No\n");
 	printf("3. Email ID\n");
@@ -694,7 +694,8 @@ deleteOption:;
 	scanf("%d", &choice);
 	if (choice == 0)
 	{
-		//goes back a menu in the program
+		//go back to the main menu
+		main();
 	}
 	else if (choice == 1)
 	{
