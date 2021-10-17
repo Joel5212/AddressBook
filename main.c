@@ -473,12 +473,8 @@ void phoneNumbers()
 {
 	FILE *fp, *fp1;
 	struct ContactInfo contactInfo;
-<<<<<<< HEAD
-	int phoneNumbers, found = 0, count = 0;
-=======
 	int found = 0, count = 0;
 	char phoneNumbers[32];
->>>>>>> new_jk_branch
 
 	fp = fopen(DEFAULT_FILE, "rb");
 	fp1 = fopen("temp.dat", "wb");
@@ -544,12 +540,8 @@ void email()
 {
 	FILE *fp, *fp1;
 	struct ContactInfo contactInfo;
-<<<<<<< HEAD
-	int email, found = 0, count = 0;
-=======
 	int found = 0, count = 0;
 	char email[32];
->>>>>>> new_jk_branch
 
 	fp = fopen(DEFAULT_FILE, "rb");
 	fp1 = fopen("temp.dat", "wb");
