@@ -25,7 +25,6 @@ struct ContactInfo
 int main()
 {
 	menu();
-	searchContact();
 }
 
 //Beginning
@@ -37,7 +36,7 @@ void menu_header(const char *str)
 	system("clear");
 
 	printf("#######  Address Book  #######\n");
-	if (str != '\0')
+	if (strcmp(str, '\0') != 0)
 	{
 		printf("#######  %s\n", str);
 	}
@@ -53,7 +52,6 @@ void main_menu(void)
 	printf("3. Edit Contact\n");
 	printf("4. Delete Contact\n");
 	printf("5. List Contacts\n");
-	printf("6. Save\n");
 	printf("\n");
 	printf("Please select an option: ");
 }
@@ -111,15 +109,11 @@ void menu()
 		case e_list_contacts:
 			list_all_contacts();
 			break;
-		case e_save:
-			save_file();
-			break;
 		case e_exit:
 			break;
 		}
 	} while (option != e_exit);
 
-	return e_success;
 }
 
 //ADD CONTACT FUNCTIONS
