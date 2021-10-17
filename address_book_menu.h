@@ -10,13 +10,28 @@
 
 #define WINDOW_SIZE 5
 
-void menu_header(const char *str)
-void main_menu(void)
+//Function Prototypes In Order
+void menu_header(const char *str);
+void main_menu(void);
 int get_option(int type, const char *msg);
 void menu();
 
 void add_contacts_menu(void);
 void add_contacts();
+
+void searchByName();
+void searchByPhone();
+void searchByEmail();
+void searchContact();
+
+void edit_contact();
+void name();
+void phoneNumbers();
+void email();
+
+void list_all_contacts();
+
+void delete_contact();
 
 // Status menu(AddressBook *address_book);
 // Status save_prompt(AddressBook *address_book);

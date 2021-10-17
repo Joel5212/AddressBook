@@ -23,18 +23,6 @@ struct ContactInfo
 	char serialNumbers[32];
 };
 
-//Function Prototypes In Order
-void menu_header(const char *str);
-void main_menu(void);
-int get_option(int type, const char *msg);
-void menu();
-
-void add_contacts_menu(void);
-void add_contacts();
-
-void name();
-void phoneNumbers();
-void email();
 
 //Main function
 int main()
@@ -660,13 +648,13 @@ void list_all_contacts()
 		printf("%s\t\t\t: ", display.name);
 		printf("%s\t\t\t: ", display.phoneNumbers);
 		printf("%s\t\t: ", display.emailAddresses);
-		printf("\n")
-			printf("==========/==========/==========/==========/==========/==========/==========/==========/==========/==========/\n");
+		printf("\n");
+		printf("==========/==========/==========/==========/==========/==========/==========/==========/==========/==========/\n");
 	}
 	//Bottom line of Display Table
 	printf("==========/==========/==========/==========/==========/==========/==========/==========/==========/==========/\n");
 
-	fclose(pf);
+	fclose(fp);
 
 	//Options to go back to main menu selection screen
 	printf("Press: [q] | Cancel: [any other key] ");
