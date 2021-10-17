@@ -84,11 +84,11 @@ typedef struct
 // 	char emailAddresses[32];
 // } ContactInfo;
 
-typedef struct {
-	char name;
-	int phoneNumbers;
-	char emailAddresses;
-	int serialNumber;
-} AddressBook;
+// typedef struct {
+// 	char name;
+// 	int phoneNumbers;
+// 	char emailAddresses;
+// 	int serialNumber;
+// } AddressBook;
 
 #endif
