@@ -22,6 +22,33 @@
 #define FIELD_DELIMITER ','
 #define NEXT_ENTRY '\n'
 
+#define NONE 0
+#define NUM 1
+#define CHAR 2
+
+#define WINDOW_SIZE 5
+
+
+
+//Function Prototypes In Order
+void menu_header(const char *str);
+void main_menu(void);
+int get_option(int type, const char *msg);
+void menu();
+void add_contacts_menu(void);
+void add_contacts();
+void searchByName();
+void searchByPhone();
+void searchByEmail();
+void searchContact();
+void edit_contact();
+void name();
+void phoneNumbers();
+void email();
+void list_all_contacts();
+void delete_contact();
+
+
 void add_contact();
 void search_contact();
 void edit_contact();

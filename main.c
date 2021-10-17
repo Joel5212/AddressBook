@@ -11,9 +11,6 @@ If it returns the Status e_success:
 #include <stdbool.h>
 
 #include "address_book.h"
-#include "address_book_menu.h"
-
-char filename[] = {"address_book.csv"};
 
 struct ContactInfo
 {
@@ -23,18 +20,6 @@ struct ContactInfo
 	char serialNumbers[32];
 };
 
-//Function Prototypes In Order
-void menu_header(const char *str);
-void main_menu(void);
-int get_option(int type, const char *msg);
-void menu();
-
-void add_contacts_menu(void);
-void add_contacts();
-
-void name();
-void phoneNumbers();
-void email();
 
 //Main function
 int main()
@@ -193,7 +178,7 @@ void add_contacts()
 void searchByName()
 {
 	FILE *filePointer;
-	filePointer = fopen(filename, "rb");
+	filePointer = fopen(DEFAULT_FILE, "rb");
 
 	struct ContactInfo target;
 	char targetName[32];
@@ -201,7 +186,7 @@ void searchByName()
 	int found = 0;
 
 	printf("\nEnter the Contact Name: ");
-	scanf("&s", &targetName);
+	scanf("%s", &targetName);
 
 	while (1)
 	{
@@ -233,7 +218,7 @@ void searchByName()
 void searchByPhone()
 {
 	FILE *filePointer;
-	filePointer = fopen(filename, "rb");
+	filePointer = fopen(DEFAULT_FILE, "rb");
 
 	struct ContactInfo target;
 	char targetPhone[32];
@@ -241,7 +226,7 @@ void searchByPhone()
 	int found = 0;
 
 	printf("\nEnter the Contact Phone: ");
-	scanf("&s", &targetPhone);
+	scanf("%s", &targetPhone);
 
 	while (1)
 	{
@@ -273,7 +258,7 @@ void searchByPhone()
 void searchByEmail()
 {
 	FILE *filePointer;
-	filePointer = fopen(filename, "rb");
+	filePointer = fopen(DEFAULT_FILE, "rb");
 
 	struct ContactInfo target;
 	char targetEmail[32];
@@ -281,7 +266,7 @@ void searchByEmail()
 	int found = 0;
 
 	printf("\nEnter the Contact Email: ");
-	scanf("&s", &targetEmail);
+	scanf("%s", &targetEmail);
 
 	while (1)
 	{
@@ -377,7 +362,6 @@ void searchContact()
 
 //EDIT CONTACT FUNCTIONS
 /* Printing a menu for when the edit option is prompted*/
-
 void edit_contact()
 {
 	int option;
@@ -418,6 +402,7 @@ void edit_contact()
 		}
 	} while (option != 0);
 }
+
 /* Edit by name case */
 void name()
 {
@@ -468,11 +453,6 @@ void name()
 	{
 		printf("Sorry No Record Found\n\n");
 	}
-
-	int main(void)
-	{
-		printf("Sorry No Record Found\n\n");
-	}
 	else
 	{
 		fp = fopen(DEFAULT_FILE, "wb");
@@ -480,13 +460,13 @@ void name()
 
 		while (1)
 		{
-			fread(&t, sizeof(t), 1, fp1);
+			fread(&contactInfo, sizeof(contactInfo), 1, fp1);
 
 			if (feof(fp1))
 			{
 				break;
 			}
-			fwrite(&t, sizeof(t), 1, fp);
+			fwrite(&contactInfo, sizeof(contactInfo), 1, fp);
 		}
 	}
 	fclose(fp);
@@ -494,7 +474,6 @@ void name()
 }
 
 /* Edit by phone number case */
-
 void phoneNumbers()
 {
 	FILE *fp, *fp1;
@@ -648,8 +627,13 @@ void list_all_contacts()
 	printf("==========/==========/==========/==========/==========/==========/==========/==========/==========/==========/\n");
 
 	//Body of Display Table
-	while (feof(fp) != NULL)
+	while (1)
 	{
+		if (feof(fp))
+		{
+			break;
+		}
+
 		fread(&display, sizeof(display), 1, fp);
 
 		printf(":  %s  : ", display.serialNumbers);
