@@ -23,6 +23,18 @@ struct ContactInfo
 	char serialNumbers[32];
 };
 
+//Function Prototypes In Order
+void menu_header(const char *str);
+void main_menu(void);
+int get_option(int type, const char *msg);
+void menu();
+
+void add_contacts_menu(void);
+void add_contacts();
+
+void name();
+void phoneNumbers();
+void email();
 
 //Main function
 int main()
@@ -181,7 +193,7 @@ void add_contacts()
 void searchByName()
 {
 	FILE *filePointer;
-	filePointer = fopen(DEFAULT_FILE, "rb");
+	filePointer = fopen(filename, "rb");
 
 	struct ContactInfo target;
 	char targetName[32];
@@ -189,7 +201,7 @@ void searchByName()
 	int found = 0;
 
 	printf("\nEnter the Contact Name: ");
-	scanf("%s", &targetName);
+	scanf("&s", &targetName);
 
 	while (1)
 	{
@@ -221,7 +233,7 @@ void searchByName()
 void searchByPhone()
 {
 	FILE *filePointer;
-	filePointer = fopen(DEFAULT_FILE, "rb");
+	filePointer = fopen(filename, "rb");
 
 	struct ContactInfo target;
 	char targetPhone[32];
@@ -229,7 +241,7 @@ void searchByPhone()
 	int found = 0;
 
 	printf("\nEnter the Contact Phone: ");
-	scanf("%s", &targetPhone);
+	scanf("&s", &targetPhone);
 
 	while (1)
 	{
@@ -261,7 +273,7 @@ void searchByPhone()
 void searchByEmail()
 {
 	FILE *filePointer;
-	filePointer = fopen(DEFAULT_FILE, "rb");
+	filePointer = fopen(filename, "rb");
 
 	struct ContactInfo target;
 	char targetEmail[32];
@@ -269,7 +281,7 @@ void searchByEmail()
 	int found = 0;
 
 	printf("\nEnter the Contact Email: ");
-	scanf("%s", &targetEmail);
+	scanf("&s", &targetEmail);
 
 	while (1)
 	{
@@ -365,6 +377,7 @@ void searchContact()
 
 //EDIT CONTACT FUNCTIONS
 /* Printing a menu for when the edit option is prompted*/
+
 void edit_contact()
 {
 	int option;
@@ -405,7 +418,6 @@ void edit_contact()
 		}
 	} while (option != 0);
 }
-
 /* Edit by name case */
 void name()
 {
@@ -417,7 +429,7 @@ void name()
 	fp1 = fopen("temp.dat", "wb");
 
 	/* Prompt user to enter employee name as thats what has been chosen for editing*/
-	/* Save it to temporary file */
+	/* Save it to temporary */
 
 	printf("\nEnter the Employee Name you want to edit:");
 	scanf("%d", &name);
@@ -434,14 +446,14 @@ void name()
 		if (contactInfo.name == name)
 		{
 			found = 1;
-			printf("\nEnter New Employee Name:");
-			scanf("%s", &contactInfo.name);
-			
-			fflush(stdin);
-			printf("\nEnter New Employee Phone number:");
-			scanf("%d", &contactInfo.phoneNumbers);
-			printf("\nEnter New Employee Email:");
+			printf("\nEnter Employee Email:");
 			scanf("%d", &contactInfo.emailAddresses);
+
+			fflush(stdin);
+			printf("\nEnter Employee Name:");
+			scanf("%s", contactInfo.name);
+			printf("\nEnter Employee Phone number:");
+			scanf("%d", &contactInfo.phoneNumbers);
 			fwrite(&contactInfo, sizeof(contactInfo), 1, fp1);
 		}
 		else
@@ -453,7 +465,12 @@ void name()
 	fclose(fp1);
 
 	if (found == 0)
-	{	
+	{
+		printf("Sorry No Record Found\n\n");
+	}
+
+	int main(void)
+	{
 		printf("Sorry No Record Found\n\n");
 	}
 	else
@@ -463,13 +480,13 @@ void name()
 
 		while (1)
 		{
-			fread(&contactInfo, sizeof(contactInfo), 1, fp1);
+			fread(&t, sizeof(t), 1, fp1);
 
 			if (feof(fp1))
 			{
 				break;
 			}
-			fwrite(&contactInfo, sizeof(contactInfo), 1, fp);
+			fwrite(&t, sizeof(t), 1, fp);
 		}
 	}
 	fclose(fp);
@@ -477,6 +494,7 @@ void name()
 }
 
 /* Edit by phone number case */
+
 void phoneNumbers()
 {
 	FILE *fp, *fp1;
@@ -500,14 +518,14 @@ void phoneNumbers()
 		if (contactInfo.phoneNumbers == phoneNumbers)
 		{
 			found = 1;
-			printf("\nEnter New Employee Name:");
-			scanf("%s", &contactInfo.name);
-			
-			fflush(stdin);
-			printf("\nEnter New Employee Phone number:");
-			scanf("%d", &contactInfo.phoneNumbers);
 			printf("\nEnter New Employee Email:");
 			scanf("%d", &contactInfo.emailAddresses);
+
+			fflush(stdin);
+			printf("\nEnter New Employee Name:");
+			scanf("%s", contactInfo.name);
+			printf("\nEnter New Employee Phone number:");
+			scanf("%d", &contactInfo.phoneNumbers);
 			fwrite(&contactInfo, sizeof(contactInfo), 1, fp1);
 		}
 		else
@@ -566,14 +584,14 @@ void email()
 		if (contactInfo.emailAddresses == email)
 		{
 			found = 1;
-			printf("\nEnter New Employee Name:");
-			scanf("%s", &contactInfo.name);
-			
-			fflush(stdin);
-			printf("\nEnter New Employee Phone number:");
-			scanf("%d", &contactInfo.phoneNumbers);
 			printf("\nEnter New Employee Email:");
 			scanf("%d", &contactInfo.emailAddresses);
+
+			fflush(stdin);
+			printf("\nEnter New Employee Name:");
+			scanf("%s", contactInfo.name);
+			printf("\nEnter New Employee Phone number:");
+			scanf("%d", contactInfo.phoneNumbers);
 			fwrite(&contactInfo, sizeof(contactInfo), 1, fp1);
 		}
 		else
@@ -662,7 +680,7 @@ void list_all_contacts()
 void delete_contact()
 {
 	FILE *fp, *fp1;
-	struct ContactInfo ab, ab2;
+	struct ContactInfo contactInfo;
 	int id, choice, found = 0;
 	//int count = 0;
 	fp = fopen(DEFAULT_FILE, "rb");
@@ -690,18 +708,21 @@ deleteOption:;
 		scanf("%s", &myName);
 		while (1)
 		{
-			fread(&ab, sizeof(ab), 1, fp);
+			fread(&contactInfo, sizeof(contactInfo), 1, fp);
 			//reaches the end of the file, break
-			if(feof(fp)){
+			if (feof(fp))
+			{
 				break;
 			}
 			//if the string matches, set found = 1, don't write to file
-			if(strcmp(ab.name, myName) == 0){
+			if (strcmp(contactInfo.name, myName) == 0)
+			{
 				found = 1;
 			}
-			else{
+			else
+			{
 				//else, copy main file's data into a temp file
-				fwrite(&ab, sizeof(ab), 1, fp1);
+				fwrite(&contactInfo, sizeof(contactInfo), 1, fp1);
 			}
 		}
 	}
@@ -712,15 +733,18 @@ deleteOption:;
 		scanf("%s", &myNumber);
 		while (1)
 		{
-			fread(&ab, sizeof(ab), 1, fp);
-			if(feof(fp)){
+			fread(&contactInfo, sizeof(contactInfo), 1, fp);
+			if (feof(fp))
+			{
 				break;
 			}
-			if(strcmp(ab.phoneNumbers, myNumber) == 0){
+			if (strcmp(contactInfo.phoneNumbers, myNumber) == 0)
+			{
 				found = 1;
 			}
-			else{
-				fwrite(&ab, sizeof(ab), 1, fp1);
+			else
+			{
+				fwrite(&contactInfo, sizeof(contactInfo), 1, fp1);
 			}
 		}
 	}
@@ -731,15 +755,18 @@ deleteOption:;
 		scanf("%s", &myEmail);
 		while (1)
 		{
-			fread(&ab, sizeof(ab), 1, fp);
-			if(feof(fp)){
+			fread(&contactInfo, sizeof(contactInfo), 1, fp);
+			if (feof(fp))
+			{
 				break;
 			}
-			if(strcmp(ab.name, myEmail) == 0){
+			if (strcmp(contactInfo.emailAddresses, myEmail) == 0)
+			{
 				found = 1;
 			}
-			else{
-				fwrite(&ab, sizeof(ab), 1, fp1);
+			else
+			{
+				fwrite(&contactInfo, sizeof(contactInfo), 1, fp1);
 			}
 		}
 	}
@@ -750,15 +777,18 @@ deleteOption:;
 		scanf("%s", &mySi);
 		while (1)
 		{
-			fread(&ab, sizeof(ab), 1, fp);
-			if(feof(fp)){
+			fread(&contactInfo, sizeof(contactInfo), 1, fp);
+			if (feof(fp))
+			{
 				break;
 			}
-			if(strcmp(ab.serialNumbers, mySi) == 0){
+			if (strcmp(contactInfo.serialNumbers, mySi) == 0)
+			{
 				found = 1;
 			}
-			else{
-				fwrite(&ab, sizeof(ab), 1, fp1);
+			else
+			{
+				fwrite(&contactInfo, sizeof(contactInfo), 1, fp1);
 			}
 		}
 	}
@@ -780,12 +810,12 @@ deleteOption:;
 		fp1 = fopen("temp.dat", "rb");
 		while (1)
 		{
-			fread(&ab, sizeof(ab), 1, fp1);
+			fread(&contactInfo, sizeof(contactInfo), 1, fp1);
 			if (feof(fp1))
 			{
 				break;
 			}
-			fwrite(&ab, sizeof(ab), 1, fp);
+			fwrite(&contactInfo, sizeof(contactInfo), 1, fp);
 		}
 		fclose(fp);
 		fclose(fp1);
