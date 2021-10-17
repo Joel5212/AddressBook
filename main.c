@@ -402,7 +402,8 @@ void name()
 {
 	FILE *fp, *fp1;
 	struct ContactInfo contactInfo;
-	int name, found = 0, count = 0;
+	int found = 0, count = 0;
+	char name[32];
 
 	fp = fopen(DEFAULT_FILE, "rb");
 	fp1 = fopen("temp.dat", "wb");
@@ -411,7 +412,7 @@ void name()
 	/* Save it to temporary */
 
 	printf("\nEnter the Employee Name you want to edit:");
-	scanf("%d", &name);
+	scanf("%s", &name);
 
 	/* while loop till either name is found and changed or not found*/
 	while (1)
@@ -472,13 +473,18 @@ void phoneNumbers()
 {
 	FILE *fp, *fp1;
 	struct ContactInfo contactInfo;
+<<<<<<< HEAD
 	int phoneNumbers, found = 0, count = 0;
+=======
+	int found = 0, count = 0;
+	char phoneNumbers[32];
+>>>>>>> new_jk_branch
 
 	fp = fopen(DEFAULT_FILE, "rb");
 	fp1 = fopen("temp.dat", "wb");
 
 	printf("\nEnter the Employee Phone number you want to edit:");
-	scanf("%d", &phoneNumbers);
+	scanf("%s", &phoneNumbers);
 
 	while (1)
 	{
@@ -538,13 +544,18 @@ void email()
 {
 	FILE *fp, *fp1;
 	struct ContactInfo contactInfo;
+<<<<<<< HEAD
 	int email, found = 0, count = 0;
+=======
+	int found = 0, count = 0;
+	char email[32];
+>>>>>>> new_jk_branch
 
 	fp = fopen(DEFAULT_FILE, "rb");
 	fp1 = fopen("temp.dat", "wb");
 
 	printf("\nEnter the Employee email you want to edit:");
-	scanf("%d", &email);
+	scanf("%s", &email);
 
 	while (1)
 	{
