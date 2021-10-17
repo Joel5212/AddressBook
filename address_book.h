@@ -12,32 +12,6 @@
 /* Length of an email address */
 #define EMAIL_ID_LEN 32
 
-/* Maximum number of Names per contact, Just for easy design */
-#define NAME_COUNT 1
-/* Maximum number of phones per contact */
-#define PHONE_NUMBER_COUNT 5
-/* Maximum number of email addresses per contact */
-#define EMAIL_ID_COUNT 5
-
-#define FIELD_DELIMITER ','
-#define NEXT_ENTRY '\n'
-
-void add_contact();
-void search_contact();
-void edit_contact();
-void delete_contact();
-void save();
-typedef int bool_t;
-
-typedef enum
-{
-	e_add,
-	e_search,
-	e_edit,
-	e_delete,
-	e_list,
-} Modes;
-
 typedef enum
 {
 	e_first_opt,
@@ -71,23 +45,10 @@ typedef enum
 
 typedef struct
 {
-	char name[NAME_COUNT][NAME_LEN];
-	char phone_numbers[PHONE_NUMBER_COUNT][NUMBER_LEN];
-	char email_addresses[EMAIL_ID_COUNT][EMAIL_ID_LEN];
+	char name[NAME_LEN];
+	char phone_number[NUMBER_LEN];
+	char email_address[EMAIL_ID_LEN];
 	int si_no;
 } ContactInfo;
-
-// typedef struct
-// {
-// 	char name[32];
-// 	char phoneNumbers[32];
-// 	char emailAddresses[32];
-// } ContactInfo;
-
-	char name;
-	int phoneNumbers;
-	char emailAddresses;
-	int serialNumber;
-} AddressBook;
 
 #endif

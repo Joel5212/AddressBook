@@ -8,22 +8,34 @@
 #define NUM 1
 #define CHAR 2
 
-#define WINDOW_SIZE 5
-
-void menu_header(const char *str)
-void main_menu(void)
+//Function Prototypes In Order
 int get_option(int type, const char *msg);
-void menu();
+void menu_header(const char *str);
+void main_menu();
+Status menu();
 
-void add_contacts_menu(void);
-void add_contacts();
+void add_contacts_menu();
+Status add_contacts();
 
-// Status menu(AddressBook *address_book);
-// Status save_prompt(AddressBook *address_book);
-// Status add_contacts(AddressBook *address_book);
-// Status search_contact(AddressBook *address_book);
-// Status edit_contact(AddressBook *address_book);
-// Status delete_contact(AddressBook *address_book);
-// Status list_contacts(AddressBook *address_book, const char *title, int *index, const char *msg, Modes mode);
+void search_contacts_menu();
+Status search_contact();
+void searchByName();
+void searchByPhone();
+void searchByEmail();
+
+void edit_contacts_menu();
+Status edit_contact();
+void editByName();
+void editByPhone();
+void editByEmail();
+
+Status list_all_contacts();
+
+void delete_contacts_menu();
+Status delete_contact();
+void deleteByName();
+void deleteByPhone();
+void deleteByEmail();
+
 
 #endif
