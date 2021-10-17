@@ -25,7 +25,6 @@ struct ContactInfo
 int main()
 {
 	menu();
-	searchContact();
 }
 
 //Beginning
