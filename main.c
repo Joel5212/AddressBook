@@ -109,25 +109,25 @@ Status menu()
 		option = get_option(NUM, "");
 		switch (option)
 		{
-            case e_add_contact:
-                add_contacts();
-                break;
-            case e_search_contact:
-                search_contact();
-                break;
-            case e_edit_contact:
-                edit_contact();
-                break;
-            case e_delete_contact:
-                delete_contact();
-                break;
-            case e_list_contacts:
-                list_all_contacts();
-                break;
-           // case e_save:     IMPLEMENTATION NEEDED ?
-           //     save_file();
-            case e_exit:
-                break;
+		case e_add_contact:
+			add_contacts();
+			break;
+		case e_search_contact:
+			search_contact();
+			break;
+		case e_edit_contact:
+			edit_contact();
+			break;
+		case e_delete_contact:
+			delete_contact();
+			break;
+		case e_list_contacts:
+			list_all_contacts();
+			break;
+			// case e_save:     IMPLEMENTATION NEEDED ?
+			//     save_file();
+		case e_exit:
+			break;
 		}
 	} while (option != e_exit);
 
@@ -136,9 +136,9 @@ Status menu()
 
 Status add_contacts()
 {
-	FILE *fp;
+	FILE *fp; //create file pointer
 	ContactInfo contactInfo;
-    int option;
+	int option;
 	fp = fopen(DEFAULT_FILE, "ab");
 
 	do
@@ -148,31 +148,31 @@ Status add_contacts()
 		option = get_option(NUM, "");
 		switch (option)
 		{
-            case e_first_opt:
-                fwrite(&contactInfo, sizeof(contactInfo), 1, fp);
-                fclose(fp);
-                break;
+		case e_first_opt:
+			fwrite(&contactInfo, sizeof(contactInfo), 1, fp); //transfer block of bytes to the file
+			fclose(fp);
+			break;
 
-            case e_second_opt:
-                printf("Enter the name: ");
-                scanf("%s", contactInfo.name);
-                break;
+		case e_second_opt:
+			printf("Enter the name: ");
+			scanf("%s", contactInfo.name);
+			break;
 
-            case e_third_opt:
-                printf("Enter the phone number: ");
-                scanf("%s", contactInfo.phone_number);
-                break;
+		case e_third_opt:
+			printf("Enter the phone number: ");
+			scanf("%s", contactInfo.phone_number);
+			break;
 
-            case e_fourth_opt:
-                printf("Enter the email address: ");
-                scanf("%s", contactInfo.email_address);
-                break;
-            default:
-                break;
+		case e_fourth_opt:
+			printf("Enter the email address: ");
+			scanf("%s", contactInfo.email_address);
+			break;
+		default:
+			break;
 		}
 	} while (option != e_exit);
 
-    return e_success;
+	return e_success;
 }
 
 void searchByName()
@@ -305,17 +305,17 @@ Status search_contact()
 
 		switch (option)
 		{
-            case e_first_opt:
-                break;
-            case e_second_opt:
-                searchByName();
-                break;
-            case e_third_opt:
-                searchByPhone();
-                break;
-            case e_fourth_opt:
-                searchByEmail();
-                break;
+		case e_first_opt:
+			break;
+		case e_second_opt:
+			searchByName();
+			break;
+		case e_third_opt:
+			searchByPhone();
+			break;
+		case e_fourth_opt:
+			searchByEmail();
+			break;
 		}
 	} while (option != e_exit);
 
@@ -326,12 +326,11 @@ void editByName()
 {
 	FILE *fp, *fp1;
 	ContactInfo contactInfo;
-    char name[NAME_LEN];
+	char name[NAME_LEN];
 	int found = 0, count = 0;
 
 	fp = fopen(DEFAULT_FILE, "rb");
 	fp1 = fopen("temp.dat", "wb");
-
 
 	printf("\nEnter the Employee Name you want to edit:");
 	scanf("%s", &name);
@@ -350,7 +349,7 @@ void editByName()
 			found = 1;
 			printf("\nEnter New Employee Name:");
 			scanf("%s", &contactInfo.name);
-			
+
 			fflush(stdin);
 			printf("\nEnter New Employee Phone number:");
 			scanf("%s", &contactInfo.phone_number);
@@ -367,7 +366,7 @@ void editByName()
 	fclose(fp1);
 
 	if (found == 0)
-	{	
+	{
 		printf("Sorry No Record Found\n\n");
 	}
 	else
@@ -395,7 +394,7 @@ void editByPhone()
 {
 	FILE *fp, *fp1;
 	ContactInfo contactInfo;
-    char phoneNumber[NUMBER_LEN];
+	char phoneNumber[NUMBER_LEN];
 	int found = 0, count = 0;
 
 	fp = fopen(DEFAULT_FILE, "rb");
@@ -417,7 +416,7 @@ void editByPhone()
 			found = 1;
 			printf("\nEnter New Employee Name:");
 			scanf("%s", &contactInfo.name);
-			
+
 			fflush(stdin);
 			printf("\nEnter New Employee Phone number:");
 			scanf("%s", &contactInfo.phone_number);
@@ -462,7 +461,7 @@ void editByEmail()
 {
 	FILE *fp, *fp1;
 	ContactInfo contactInfo;
-    char email[EMAIL_ID_LEN];
+	char email[EMAIL_ID_LEN];
 	int found = 0, count = 0;
 
 	fp = fopen(DEFAULT_FILE, "rb");
@@ -484,7 +483,7 @@ void editByEmail()
 			found = 1;
 			printf("\nEnter New Employee Name:");
 			scanf("%s", &contactInfo.name);
-			
+
 			fflush(stdin);
 			printf("\nEnter New Employee Phone number:");
 			scanf("%s", &contactInfo.phone_number);
@@ -526,7 +525,7 @@ void editByEmail()
 
 Status edit_contact()
 {
-    int option;
+	int option;
 
 	do
 	{
@@ -536,17 +535,17 @@ Status edit_contact()
 
 		switch (option)
 		{
-            case e_first_opt:
-                break;
-            case e_second_opt:
-                editByName();
-                break;
-            case e_third_opt:
-                editByPhone();
-                break;
-            case e_fourth_opt:
-                editByEmail();
-                break;
+		case e_first_opt:
+			break;
+		case e_second_opt:
+			editByName();
+			break;
+		case e_third_opt:
+			editByPhone();
+			break;
+		case e_fourth_opt:
+			editByEmail();
+			break;
 		}
 	} while (option != e_exit);
 
@@ -601,39 +600,42 @@ Status list_all_contacts()
 	{
 		return e_success;
 	}
-    return e_success;
+	return e_success;
 }
 
 void deleteByName()
 {
-    FILE *fp, *temp;
-    ContactInfo contactInfo;
-    int found = 0;
-    char myName[32];
+	FILE *fp, *temp;
+	ContactInfo contactInfo;
+	int found = 0;
+	char myName[32];
 
-    fp = fopen(DEFAULT_FILE, "rb");
+	fp = fopen(DEFAULT_FILE, "rb");
 	temp = fopen("temp.dat", "wb");
 
-    printf("Enter the name: ");
-    scanf("%s", &myName);
-    while (1)
-    {
-        fread(&contactInfo, sizeof(contactInfo), 1, fp);
-        //reaches the end of the file, break
-        if(feof(fp)){
-            break;
-        }
-        //if the string matches, set found = 1, don't write to file
-        if(strcmp(contactInfo.name, myName) == 0){
-            found = 1;
-        }
-        else{
-            //else, copy main file's data into a temp file
-            fwrite(&contactInfo, sizeof(contactInfo), 1, temp);
-        }
-    }
+	printf("Enter the name: ");
+	scanf("%s", &myName);
+	while (1)
+	{
+		fread(&contactInfo, sizeof(contactInfo), 1, fp);
+		//reaches the end of the file, break
+		if (feof(fp))
+		{
+			break;
+		}
+		//if the string matches, set found = 1, don't write to file
+		if (strcmp(contactInfo.name, myName) == 0)
+		{
+			found = 1;
+		}
+		else
+		{
+			//else, copy main file's data into a temp file
+			fwrite(&contactInfo, sizeof(contactInfo), 1, temp);
+		}
+	}
 
-    if (found == 0)
+	if (found == 0)
 	{
 		printf("Could not find the contact.\n");
 	}
@@ -656,34 +658,37 @@ void deleteByName()
 
 void deleteByPhone()
 {
-    FILE *fp, *temp;
-    ContactInfo contactInfo;
-    int found = 0;
-    char myNumber[32];
+	FILE *fp, *temp;
+	ContactInfo contactInfo;
+	int found = 0;
+	char myNumber[32];
 
-    fp = fopen(DEFAULT_FILE, "rb");
+	fp = fopen(DEFAULT_FILE, "rb");
 	temp = fopen("temp.dat", "wb");
 
-    printf("Enter the phone number: ");
-    scanf("%s", &myNumber);
-    while (1)
-    {
-        fread(&contactInfo, sizeof(contactInfo), 1, fp);
-        //reaches the end of the file, break
-        if(feof(fp)){
-            break;
-        }
-        //if the string matches, set found = 1, don't write to file
-        if(strcmp(contactInfo.phone_number, myNumber) == 0){
-            found = 1;
-        }
-        else{
-            //else, copy main file's data into a temp file
-            fwrite(&contactInfo, sizeof(contactInfo), 1, temp);
-        }
-    }
+	printf("Enter the phone number: ");
+	scanf("%s", &myNumber);
+	while (1)
+	{
+		fread(&contactInfo, sizeof(contactInfo), 1, fp);
+		//reaches the end of the file, break
+		if (feof(fp))
+		{
+			break;
+		}
+		//if the string matches, set found = 1, don't write to file
+		if (strcmp(contactInfo.phone_number, myNumber) == 0)
+		{
+			found = 1;
+		}
+		else
+		{
+			//else, copy main file's data into a temp file
+			fwrite(&contactInfo, sizeof(contactInfo), 1, temp);
+		}
+	}
 
-    if (found == 0)
+	if (found == 0)
 	{
 		printf("Could not find the contact.\n");
 	}
@@ -706,34 +711,37 @@ void deleteByPhone()
 
 void deleteByEmail()
 {
-    FILE *fp, *temp;
-    ContactInfo contactInfo;
-    int found = 0;
-    char myEmail[32];
+	FILE *fp, *temp;
+	ContactInfo contactInfo;
+	int found = 0;
+	char myEmail[32];
 
-    fp = fopen(DEFAULT_FILE, "rb");
+	fp = fopen(DEFAULT_FILE, "rb");
 	temp = fopen("temp.dat", "wb");
 
-    printf("Enter the email: ");
-    scanf("%s", &myEmail);
-    while (1)
-    {
-        fread(&contactInfo, sizeof(contactInfo), 1, fp);
-        //reaches the end of the file, break
-        if(feof(fp)){
-            break;
-        }
-        //if the string matches, set found = 1, don't write to file
-        if(strcmp(contactInfo.email_address, myEmail) == 0){
-            found = 1;
-        }
-        else{
-            //else, copy main file's data into a temp file
-            fwrite(&contactInfo, sizeof(contactInfo), 1, temp);
-        }
-    }
+	printf("Enter the email: ");
+	scanf("%s", &myEmail);
+	while (1)
+	{
+		fread(&contactInfo, sizeof(contactInfo), 1, fp);
+		//reaches the end of the file, break
+		if (feof(fp))
+		{
+			break;
+		}
+		//if the string matches, set found = 1, don't write to file
+		if (strcmp(contactInfo.email_address, myEmail) == 0)
+		{
+			found = 1;
+		}
+		else
+		{
+			//else, copy main file's data into a temp file
+			fwrite(&contactInfo, sizeof(contactInfo), 1, temp);
+		}
+	}
 
-    if (found == 0)
+	if (found == 0)
 	{
 		printf("Could not find the contact.\n");
 	}
@@ -766,17 +774,17 @@ Status delete_contact()
 
 		switch (option)
 		{
-            case e_first_opt:
-                break;
-            case e_second_opt:
-                deleteByName();
-                break;
-            case e_third_opt:
-                deleteByPhone();
-                break;
-            case e_fourth_opt:
-                deleteByEmail();
-                break;
+		case e_first_opt:
+			break;
+		case e_second_opt:
+			deleteByName();
+			break;
+		case e_third_opt:
+			deleteByPhone();
+			break;
+		case e_fourth_opt:
+			deleteByEmail();
+			break;
 		}
 	} while (option != e_exit);
 
@@ -786,5 +794,5 @@ Status delete_contact()
 int main()
 {
 	menu();
-    return 0;
+	return 0;
 }
