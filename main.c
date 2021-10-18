@@ -13,6 +13,7 @@ int get_option(int type, const char *msg)
 		int option;
 		printf(msg);
 		scanf("%d", &option);
+		printf("\n");
 		return option;
 	}
 	else if (type == CHAR)
@@ -20,6 +21,7 @@ int get_option(int type, const char *msg)
 		char option;
 		printf(msg);
 		scanf("%c", &option);
+		printf("\n");
 		return (int)option;
 	}
 }
@@ -45,7 +47,6 @@ void main_menu()
 	printf("3. Edit Contact\n");
 	printf("4. Delete Contact\n");
 	printf("5. List Contacts\n");
-	printf("6. Save\n");
 	printf("\n");
 	printf("Please select an option: ");
 }
@@ -124,8 +125,6 @@ Status menu()
 		case e_list_contacts:
 			list_all_contacts();
 			break;
-			// case e_save:     IMPLEMENTATION NEEDED ?
-			//     save_file();
 		case e_exit:
 			break;
 		}
@@ -197,10 +196,12 @@ void searchByName()
 		}
 		if (strcmp(targetName, target.name) == 0)
 		{
+			system("cls");
 			printf("Contact Info of %s:\n\n", target.name);
 			printf("Name: %s\n", target.name);
 			printf("Phone Number: %s\n", target.phone_number);
 			printf("Email: %s\n", target.email_address);
+			printf("\n");
 
 			found = 1;
 		}
@@ -208,7 +209,7 @@ void searchByName()
 
 	if (found == 0)
 	{
-		printf("\nNo Contact Found");
+		printf("\nNo Contact Found\n\n");
 	}
 	fclose(filePointer);
 }
@@ -241,6 +242,7 @@ void searchByPhone()
 			printf("Name: %s\n", target.name);
 			printf("Phone Number: %s\n", target.phone_number);
 			printf("Email: %s\n", target.email_address);
+			printf("\n");
 
 			found = 1;
 		}
@@ -248,7 +250,7 @@ void searchByPhone()
 
 	if (found == 0)
 	{
-		printf("\nNo Contact Found");
+		printf("\nNo Contact Found\n\n");
 	}
 	fclose(filePointer);
 }
@@ -281,6 +283,7 @@ void searchByEmail()
 			printf("Name: %s\n", target.name);
 			printf("Phone Number: %s\n", target.phone_number);
 			printf("Email: %s\n", target.email_address);
+			printf("\n");
 
 			found = 1;
 		}
@@ -288,7 +291,7 @@ void searchByEmail()
 
 	if (found == 0)
 	{
-		printf("\nNo Contact Found");
+		printf("\nNo Contact Found\n\n");
 	}
 	fclose(filePointer);
 }
@@ -555,9 +558,7 @@ Status edit_contact()
 //LIST CONTACTS FUNCTIONS
 Status list_all_contacts()
 {
-	char option;
-	char back = 'q';
-	int result;
+	int option;
 
 	FILE *fp;
 	ContactInfo display;
@@ -569,13 +570,17 @@ Status list_all_contacts()
 	printf("######\tSearch Result:\n");
 
 	//Top of Display Table
-	printf("==========/==========/==========/==========/==========/==========/==========/==========/==========/==========/\n");
+	printf("====================================================================================================\n");
 	printf(":  S.No  : Name\t\t\t\t: Phone No\t\t\t\t: Email ID\t\t\t\t:\n");
-	printf("==========/==========/==========/==========/==========/==========/==========/==========/==========/==========/\n");
+	printf("====================================================================================================\n");
 
 	//Body of Display Table
-	while (!(feof(fp)))
+	while (1)
 	{
+		if (feof(fp)){
+			break;
+		}
+
 		fread(&display, sizeof(display), 1, fp);
 
 		printf(":  %s  : ", display.si_no);
@@ -583,22 +588,20 @@ Status list_all_contacts()
 		printf("%s\t\t\t: ", display.phone_number);
 		printf("%s\t\t: ", display.email_address);
 		printf("\n");
-		printf("==========/==========/==========/==========/==========/==========/==========/==========/==========/==========/\n");
+		printf("====================================================================================================\n");
 	}
 	//Bottom line of Display Table
-	printf("==========/==========/==========/==========/==========/==========/==========/==========/==========/==========/\n");
+	printf("====================================================================================================\n");
 
 	fclose(fp);
 
 	//Options to go back to main menu selection screen
-	printf("Press: [q] | Cancel: [any other key] ");
-	scanf("%c\n", &option);
+	printf("Go Back To Main Menu: [0]");
+	scanf("%d\n", &option);
 
-	result = strcmp(&option, &back);
-
-	if (result == -113)
+	if (option == 0)
 	{
-		return e_success;
+		menu();
 	}
 	return e_success;
 }
