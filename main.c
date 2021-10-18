@@ -568,21 +568,20 @@ Status list_all_contacts()
 	//Address Book Header
 	printf("\n######\tAddress Book\t######\n");
 	printf("######\tSearch Result:\n");
+	
 
 	//Top of Display Table
 	printf("====================================================================================================\n");
 	printf(":  S.No  : Name\t\t\t\t: Phone No\t\t\t\t: Email ID\t\t\t\t:\n");
 	printf("====================================================================================================\n");
+	
 
 	//Body of Display Table
-	while (1)
+	while (fread(&display, sizeof(display), 1, fp))
 	{
 		if (feof(fp)){
 			break;
 		}
-
-		fread(&display, sizeof(display), 1, fp);
-
 		printf(":  %s  : ", display.si_no);
 		printf("%s\t\t\t: ", display.name);
 		printf("%s\t\t\t: ", display.phone_number);

@@ -11,6 +11,7 @@
 #define NUMBER_LEN 32
 /* Length of an email address */
 #define EMAIL_ID_LEN 32
+#define SI_NO_LEN 32
 
 typedef enum
 {
@@ -48,7 +49,7 @@ typedef struct
 	char name[NAME_LEN];
 	char phone_number[NUMBER_LEN];
 	char email_address[EMAIL_ID_LEN];
-	int si_no;
+	char si_no[SI_NO_LEN];
 } ContactInfo;
 
 #endif
