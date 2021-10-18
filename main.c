@@ -611,10 +611,11 @@ void deleteByName()
 	FILE *fp, *temp;
 	ContactInfo contactInfo;
 	int found = 0;
+	int option;
 	char myName[32];
 
 	fp = fopen(DEFAULT_FILE, "rb");
-	temp = fopen("temp.dat", "wb");
+	temp = fopen("temp.csv", "wb");
 
 	printf("Enter the name: ");
 	scanf("%s", &myName);
@@ -637,14 +638,25 @@ void deleteByName()
 			fwrite(&contactInfo, sizeof(contactInfo), 1, temp);
 		}
 	}
+	fclose(fp);
+	fclose(temp);
 
 	if (found == 0)
 	{
 		printf("Could not find the contact.\n");
+		printf("Press 0 Back To Main Menu: ");
+		scanf("%d", &option);
+		if (option == 0)
+		{
+		printf("\n");
+		menu();
+		}
 	}
 	else
 	{
 		//read from temp file and write to main file.
+		fp = fopen(DEFAULT_FILE, "wb");
+		temp = fopen("temp.csv", "rb");
 		while (1)
 		{
 			fread(&contactInfo, sizeof(contactInfo), 1, temp);
@@ -656,6 +668,13 @@ void deleteByName()
 		}
 		fclose(fp);
 		fclose(temp);
+		printf("Press 0 Back To Main Menu: ");
+		scanf("%d", &option);
+		if (option == 0)
+		{
+		printf("\n");
+		menu();
+		}
 	}
 }
 
@@ -664,10 +683,11 @@ void deleteByPhone()
 	FILE *fp, *temp;
 	ContactInfo contactInfo;
 	int found = 0;
+	int option;
 	char myNumber[32];
 
 	fp = fopen(DEFAULT_FILE, "rb");
-	temp = fopen("temp.dat", "wb");
+	temp = fopen("temp.csv", "wb");
 
 	printf("Enter the phone number: ");
 	scanf("%s", &myNumber);
@@ -690,13 +710,25 @@ void deleteByPhone()
 			fwrite(&contactInfo, sizeof(contactInfo), 1, temp);
 		}
 	}
+	fclose(fp);
+	fclose(temp);
 
 	if (found == 0)
 	{
 		printf("Could not find the contact.\n");
+		printf("Press 0 Back To Main Menu: ");
+		scanf("%d", &option);
+
+		if (option == 0)
+		{
+		printf("\n");
+		menu();
+		}
 	}
 	else
 	{
+		fp = fopen(DEFAULT_FILE, "wb");
+		temp = fopen("temp.csv", "rb");
 		//read from temp file and write to main file.
 		while (1)
 		{
@@ -709,6 +741,13 @@ void deleteByPhone()
 		}
 		fclose(fp);
 		fclose(temp);
+		printf("Press 0 Back To Main Menu: ");
+		scanf("%d", &option);
+		if (option == 0)
+		{
+		printf("\n");
+		menu();
+		}
 	}
 }
 
@@ -717,10 +756,11 @@ void deleteByEmail()
 	FILE *fp, *temp;
 	ContactInfo contactInfo;
 	int found = 0;
+	int option;
 	char myEmail[32];
 
 	fp = fopen(DEFAULT_FILE, "rb");
-	temp = fopen("temp.dat", "wb");
+	temp = fopen("temp.csv", "wb");
 
 	printf("Enter the email: ");
 	scanf("%s", &myEmail);
@@ -743,13 +783,24 @@ void deleteByEmail()
 			fwrite(&contactInfo, sizeof(contactInfo), 1, temp);
 		}
 	}
+	fclose(fp);
+	fclose(temp);
 
 	if (found == 0)
 	{
 		printf("Could not find the contact.\n");
+		printf("Press 0 Back To Main Menu: ");
+		scanf("%d", &option);
+		if (option == 0)
+		{
+		printf("\n");
+		menu();
+		}
 	}
 	else
 	{
+		fp = fopen(DEFAULT_FILE, "wb");
+		temp = fopen("temp.csv", "rb");
 		//read from temp file and write to main file.
 		while (1)
 		{
@@ -762,6 +813,13 @@ void deleteByEmail()
 		}
 		fclose(fp);
 		fclose(temp);
+		printf("Press 0 Back To Main Menu: ");
+		scanf("%d", &option);
+		if (option == 0)
+		{
+		printf("\n");
+		menu();
+		}
 	}
 }
 
