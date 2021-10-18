@@ -598,7 +598,6 @@ Status list_all_contacts()
 
 	if (option == 0)
 	{
-		printf('\n');
 		menu();
 	}
 	return e_success;
