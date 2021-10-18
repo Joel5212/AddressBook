@@ -572,7 +572,7 @@ Status list_all_contacts()
 
 	//Top of Display Table
 	printf("====================================================================================================\n");
-	printf(":  S.No  : Name\t\t\t\t: Phone No\t\t\t\t: Email ID\t\t\t\t:\n");
+	printf(":  S.No  : Name\t\t\t\t: Phone No\t\t\t: Email ID\t\t:\n");
 	printf("====================================================================================================\n");
 	
 
@@ -582,7 +582,7 @@ Status list_all_contacts()
 		if (feof(fp)){
 			break;
 		}
-		printf(":  %s  : ", display.si_no);
+		printf(":  %d  : ", display.si_no);
 		printf("%s\t\t\t: ", display.name);
 		printf("%s\t\t\t: ", display.phone_number);
 		printf("%s\t\t: ", display.email_address);
@@ -595,11 +595,12 @@ Status list_all_contacts()
 	fclose(fp);
 
 	//Options to go back to main menu selection screen
-	printf("Go Back To Main Menu: [0]");
-	scanf("%d\n", &option);
+	printf("Press 0 Back To Main Menu: ");
+	scanf("%d", &option);
 
 	if (option == 0)
 	{
+		printf("\n");
 		menu();
 	}
 	return e_success;
